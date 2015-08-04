@@ -1,0 +1,116 @@
+﻿.table{
+	font-family: 'Open Sans', sans-serif;
+	font-size:12px;
+	text-transform:uppercase;
+	width:100%;
+  	border-collapse: collapse;
+}
+.table thead td{
+	background-color:#E6E6E6;
+	height:25px;
+	border:1px solid #dfdfdf;
+}
+.table tbody td{
+	font-size:10px;
+	border:1px solid #dfdfdf;
+}
+.table tbody tr:nth-child(even){
+    background-color: #F0F0F0;
+    color: #000000;
+}
+.table tbody tr:hover{
+	background-color:navy;
+	color:#dfdfdf;
+}
+.BotonNuevo {
+	display:block;
+	width:100px;
+	padding:4px 0;
+	text-decoration:none;
+	text-align:center;
+	font-size:11px;
+	color:#FFFFFF;
+	background-color:#3F4C6B;
+	border-left:10px solid #666666;  
+}
+.BotonNuevo:hover {
+	color:#F7D358;
+	background-color:#003366;
+	border-left-color:#F7D358; 
+    font-weight:bold;
+}
+.CapForm {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+margin: 20px auto;
+width: 300px;
+border-top: 10px solid navy;
+border-bottom: 10px solid Navy;
+}
+.CapForm-screen {
+background-color: #FFF;
+padding: 20px;
+border-radius: 5px
+}
+.app-title {
+text-align: center;
+color: #777;
+font-size:11px;
+}
+.control-group {
+margin-bottom: 10px;
+}
+.CapForm-form {
+text-align: center;
+}
+
+.Input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
+}
+.botonsave{
+            background: #2980b9;
+            border: solid 0;
+            color: #fff;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+.botoncancel{
+            background: #777777;
+            border: solid 0;
+            color: #fff;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+a.Edit
+{
+ background: url(/Imgs/Edit.png) no-repeat top left;
+ display: block;
+ width:30px;
+ height:30px;
+ text-indent: -9999px; /* hides the link text */
+}
+a.Delete
+{
+ background: url(/Imgs/Delete.png) no-repeat top left;
+ display: block;
+ width:30px;
+ height:30px;
+ text-indent: -9999px; /* hides the link text */
+}
+.lnkTel{
+            background: #2980b9;
+            border: solid 0;
+            color: #fff;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }

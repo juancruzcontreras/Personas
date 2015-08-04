@@ -1,0 +1,55 @@
+﻿@model TestPerson.Models.Person
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Captura</title>
+    <link href="~/Css/Tema.css" rel="stylesheet" />
+    <script src="~/JScript/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnCancel").click(function () {
+                window.location = "Index";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="login">
+        <div class="CapForm-screen">
+            <div class="app-title">
+                <h1>CAPTURA/EDICION</h1>
+            </div>
+            <div class="CapForm-form">
+                @using (Html.BeginForm("Captura","Home", FormMethod.Post, new { enctype= "multipart/form-data"}))
+                {
+                    @Html.ValidationSummary(true)
+                <div class="control-group">
+                    @Html.Label("Nombre:")
+                    @Html.TextBoxFor(model => model.Nombre, new { @class ="Input"})
+                </div>
+                <div class="control-group">
+                    @Html.Label("Fecha Nacimiento:")
+                    @Html.TextBoxFor(model => model.FechaNac, new { @class="Input"})
+                </div>
+                <div class="control-group">
+                    @Html.Label("Foto:")
+                    <input type="file" id="Foto" name="Foto" />
+                </div>
+                    
+                    @Html.HiddenFor(model => model.Id)
+                <div>
+                    <input type="submit" class="botonsave" value="Guardar" />
+                    <input type="button" class="botoncancel" value="Cancelar" id="btnCancel" />
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

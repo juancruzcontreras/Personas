@@ -1,0 +1,98 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Telefonos</title>
+    <link href="~/Css/Tema.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/jquery-ui.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/JScript/jquery-1.7.1.min.js")"></script>
+    <script src="@Url.Content("~/JScript/jquery-ui-1.8.20.min.js")"></script>
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            $("#CapEditPhone").hide();
+        });
+        function Nuevo() {
+            $("#gvPhones").hide();
+            $("#CapEditPhone").show();
+            $("#txtPhone").val('');
+            $("#IdPhone").val(0);
+            $("#IdPerson").val(@ViewBag.IdP);
+        }
+            function Edita(Id, Phone) {
+                $("#gvPhones").hide();
+                $("#CapEditPhone").show();
+                $("#txtPhone").val(Phone);
+                $("#IdPhone").val(Id);
+                $("#IdPerson").val(@ViewBag.IdP);
+            }
+            function CancelEdit() {
+                $("#CapEditPhone").hide();
+                $("#gvPhones").show();
+            }
+    </script>
+</head>
+<body>
+    <div> 
+        @Html.DevExpress().GetStyleSheets(new StyleSheet { ExtensionSuite = ExtensionSuite.GridView})
+
+        <div id="gvPhones">
+            @Html.DevExpress().GridView(
+         settings =>
+         {
+             settings.Name = "gvTelefonos";
+             settings.CallbackRouteValues = new { Controller = "Home", Action = "GetPhones" };
+             settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+             settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+
+             settings.Columns.Add(column =>
+             {
+                 column.Caption = "#";
+                 column.SetDataItemTemplateContent(c =>
+                 {
+                     ViewContext.Writer.Write(
+                         "<a href='javascript:Edita("+ DataBinder.Eval(c.DataItem, "Id") +","+ DataBinder.Eval(c.DataItem, "Telefono") +");' >Edita</a>" + "&nbsp;" + 
+                         Html.ActionLink("Elimina", "DeletePhone", new { Id = DataBinder.Eval(c.DataItem, "Id") },
+                             new { onclick = "return confirm('¿Borrar telefono?')" })
+                     );
+                 });
+                 column.SetHeaderTemplateContent(c =>
+                 {
+                     ViewContext.Writer.Write(
+                         "<a href='javascript:Nuevo();'>Nuevo</a>"
+                     );
+                 });
+                 column.Settings.AllowDragDrop = DefaultBoolean.False;
+                 column.Settings.AllowSort = DefaultBoolean.False;
+                 column.Width = 70;
+             });
+             settings.Columns.Add("Id");
+             settings.Columns.Add("Telefono");
+
+             settings.SettingsPager.NumericButtonCount = 6;
+         }
+        ).Bind(Model).GetHtml()
+        </div>
+        <div id="CapEditPhone">
+            @using (Html.BeginForm("EditPhone", "Home"))
+            {
+                @Html.Hidden("IdPhone");
+                @Html.Label("Telefono:");
+                @Html.TextBox("txtPhone", null, new { @class = "input"});
+                @Html.Hidden("IdPerson");
+                <div style="height:100px; margin-top:20px;">
+                    @*@Html.ActionLink("Guardar", "EditPhone", new { IdPhone = 0, Phone = "123", IdPerson = ViewBag.IdP }, new { @class = "botonsave" })*@
+                    <input type="submit" value="Guardar" class="botonsave" />
+                    <input type="button" value="Cancelar" id="CancelPhone" onclick="javascript: CancelEdit();" style="float:right" class="botoncancel" />
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
